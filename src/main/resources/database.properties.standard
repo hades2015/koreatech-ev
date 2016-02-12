@@ -1,0 +1,4 @@
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://{your server ip}:13306/jamong
+jdbc.username={your id}
+jdbc.password={your password}
