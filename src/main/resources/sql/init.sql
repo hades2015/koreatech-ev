@@ -8,21 +8,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema koreatechEV
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema koreatechEV
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `koreatechEV` DEFAULT CHARACTER SET utf8 ;
+USE `koreatechEV` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`student`
+-- Table `koreatechEV`.`student`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`student` ;
+DROP TABLE IF EXISTS `koreatechEV`.`student` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`student` (
+CREATE TABLE IF NOT EXISTS `koreatechEV`.`student` (
   `user_id` VARCHAR(12) NOT NULL,
   `password` VARCHAR(12) NOT NULL,
   `name` VARCHAR(5) NOT NULL,
@@ -37,11 +37,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`professor`
+-- Table `koreatechEV`.`professor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`professor` ;
+DROP TABLE IF EXISTS `koreatechEV`.`professor` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`professor` (
+CREATE TABLE IF NOT EXISTS `koreatechEV`.`professor` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(5) NOT NULL,
   `department` VARCHAR(10) NULL,
@@ -50,11 +50,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`board`
+-- Table `koreatechEV`.`board`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`board` ;
+DROP TABLE IF EXISTS `koreatechEV`.`board` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`board` (
+CREATE TABLE IF NOT EXISTS `koreatechEV`.`board` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(30) NOT NULL,
   `description` TEXT(2048) NOT NULL,
@@ -66,18 +66,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`board` (
   INDEX `fk_board_student1_idx` (`author` ASC),
   CONSTRAINT `fk_board_student1`
     FOREIGN KEY (`author`)
-    REFERENCES `mydb`.`student` (`user_id`)
+    REFERENCES `koreatechEV`.`student` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`reply`
+-- Table `koreatechEV`.`reply`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`reply` ;
+DROP TABLE IF EXISTS `koreatechEV`.`reply` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`reply` (
+CREATE TABLE IF NOT EXISTS `koreatechEV`.`reply` (
   `board_id` INT NOT NULL,
   `author` VARCHAR(12) NOT NULL,
   `reg_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`reply` (
   INDEX `fk_reply_board_idx` (`board_id` ASC),
   CONSTRAINT `fk_reply_board`
     FOREIGN KEY (`board_id`)
-    REFERENCES `mydb`.`board` (`id`)
+    REFERENCES `koreatechEV`.`board` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
