@@ -1,7 +1,6 @@
 package model;
 
 public class Student {
-	private int id;
 	private String userId;
 	private String password;
 	private String name;
@@ -13,12 +12,11 @@ public class Student {
 	
 	public Student() {	/* ModelAttribute를 위해 작성 */ }
 	
-	public Student(int id, String userId, String pasword, String name, String nickName, String department, int grade,
+	public Student(String userId, String password, String name, String nickName, String department, int grade,
 			String studentNumber, String email) {
 		super();
-		this.id = id;
 		this.userId = userId;
-		this.password = pasword;
+		this.password = password;
 		this.name = name;
 		this.nickName = nickName;
 		this.department = department;
@@ -27,23 +25,17 @@ public class Student {
 		this.email = email;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getPasword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPasword(String pasword) {
-		this.password = pasword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getName() {
 		return name;

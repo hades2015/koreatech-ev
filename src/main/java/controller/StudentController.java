@@ -1,5 +1,6 @@
 package controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,9 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.Student;
+import service.StudentService;
 
 @Controller
 public class StudentController {
+	@Autowired
+	private StudentService studentService;
+	
 	@RequestMapping("/")
 	public String root() {
 		return "redirect:login";
@@ -22,9 +27,12 @@ public class StudentController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String loginPost(@RequestParam String userId, @RequestParam String password) {
-		System.out.println(userId);
-		System.out.println(password);
-		return "evaluation";
+		Student student = studentService.readStudentByUserId(userId);
+		if(password.equals(student.getPassword())) {
+			return "evaluation";
+		} else {
+			return "login_fail";
+		}
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
@@ -34,8 +42,7 @@ public class StudentController {
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
 	public String signUpPost(@ModelAttribute Student student) { 
-		System.out.println("Controller Catch");
-		
+		studentService.createStudent(student);
 		return "redirect:login";
 	}
 }
