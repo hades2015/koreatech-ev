@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `koreatechEV`.`board` (
   `title` VARCHAR(30) NOT NULL,
   `description` TEXT(2048) NOT NULL,
   `author` VARCHAR(12) NOT NULL,
-  `reg_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hit` INT NOT NULL DEFAULT 0,
   `report` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `koreatechEV`.`reply` ;
 CREATE TABLE IF NOT EXISTS `koreatechEV`.`reply` (
   `board_id` INT NOT NULL,
   `author` VARCHAR(12) NOT NULL,
-  `reg_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `descrition` VARCHAR(250) NOT NULL,
   `report` INT NOT NULL DEFAULT 0,
   INDEX `fk_reply_board_idx` (`board_id` ASC),
