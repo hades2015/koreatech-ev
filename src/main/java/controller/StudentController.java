@@ -29,9 +29,9 @@ public class StudentController {
 	public String loginPost(@RequestParam String userId, @RequestParam String password) {
 		Student student = studentService.readStudentByUserId(userId);
 		if(password.equals(student.getPassword())) {
-			return "evaluation";
+			return "redirect:evaluation";
 		} else {
-			return "login_fail";
+			return "redirect:login_fail";
 		}
 	}
 	
