@@ -1,9 +1,0 @@
-diff a/WebContent/WEB-INF/jsp/login.jsp b/WebContent/WEB-INF/jsp/login.jsp	(rejected hunks)
-@@ -7,6 +7,7 @@
- <title>Login</title>
- </head>
- <body>
-+	<h1>TEST TITLE</h1>
- 	<div class="contents">
- 		<form method="post" id="login_form" action="login">
- 			<input type="text" id="userId" name="userId" placeholder="ID">
