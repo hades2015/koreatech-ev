@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>EV::Home</title>
-<link rel="icon" href="/assets/img/favicon.ico" />
+<title>KoreatechEV::Home</title>
 <link rel="stylesheet" type="css/text" href="/assets/css/normalize.css">
 <link rel="stylesheet" type="css/text" href="/assets/css/global.css">
 <style>
