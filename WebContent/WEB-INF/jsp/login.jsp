@@ -7,7 +7,6 @@
 <title>Login</title>
 </head>
 <body>
-	<h1>TEST MIR</h1>
 	<div class="contents">
 		<form method="post" id="login_form" action="login">
 			<input type="text" id="userId" name="userId" placeholder="ID">
