@@ -3,26 +3,26 @@ package model;
 public class Student {
 	private String userId;
 	private String password;
-	private String name;
-	private String nickName;
+	private String userName;
+	private String nickname;
 	private String department;
 	private int grade;
 	private String studentNumber;
-	private String email;
+	private String userEmail;
 	
 	public Student() {	/* ModelAttribute를 위해 작성 */ }
 	
-	public Student(String userId, String password, String name, String nickName, String department, int grade,
-			String studentNumber, String email) {
+	public Student(String userId, String password, String userName, String nickname, String department, int grade,
+			String studentNumber, String userEmail) {
 		super();
 		this.userId = userId;
 		this.password = password;
-		this.name = name;
-		this.nickName = nickName;
+		this.userName = userName;
+		this.nickname = nickname;
 		this.department = department;
 		this.grade = grade;
 		this.studentNumber = studentNumber;
-		this.email = email;
+		this.userEmail = userEmail;
 	}
 	
 	public String getUserId() {
@@ -37,17 +37,17 @@ public class Student {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getDepartment() {
 		return department;
@@ -67,10 +67,10 @@ public class Student {
 	public void setStudentNumber(String studentNumber) {
 		this.studentNumber = studentNumber;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 }
