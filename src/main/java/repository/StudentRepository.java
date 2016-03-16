@@ -22,9 +22,9 @@ public class StudentRepository extends JdbcDaoSupport {
 	
 	public void createStudent(Student student) {
 		getJdbcTemplate().update(StudentSqls.CREATE_STUDENT, 
-					student.getUserId(), student.getPassword(), student.getName(),
-					student.getNickName(), student.getDepartment(), student.getGrade(), 
-					student.getStudentNumber(), student.getEmail());
+					student.getUserId(), student.getPassword(), student.getUserName(),
+					student.getNickname(), student.getDepartment(), student.getGrade(), 
+					student.getStudentNumber(), student.getUserEmail());
 	}
 
 	public Student readStudentByUserId(String userId) {
@@ -43,9 +43,9 @@ public class StudentRepository extends JdbcDaoSupport {
 	
 	public void updateStudentByUserId(Student student) {
 		getJdbcTemplate().update(StudentSqls.UPDATE_STUDENT_BY_USER_ID, 
-					student.getPassword(), student.getName(), student.getNickName(),
+					student.getPassword(), student.getUserName(), student.getNickname(),
 					student.getDepartment(), student.getGrade(), student.getStudentNumber(),
-					student.getEmail(), student.getUserId());
+					student.getUserEmail(), student.getUserId());
 	}
 	
 	public void deleteStudentByUserId(String userId) {

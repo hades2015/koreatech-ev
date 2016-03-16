@@ -1,0 +1,49 @@
+body {
+	background-color: #f4f3f8;
+}
+
+#signup_container {
+	position: absolute;
+	display: table;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	transform: translate(-50%, -50%);
+}
+
+#signup_container input[type='text'], input[type='password'] {
+	width: 100%;
+	line-height: 25px;
+	margin: 15px 0;
+	padding: 5px 0;
+	border: 0;
+	font-size:15px;
+	text-indent: 10px;
+	color: #454545;
+}
+
+#button_container {
+	margin-top: 25px;
+}
+
+#signup_btn {
+	background: #c52924;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 800;
+	cursor: pointer;
+	width: 100%;
+}
+
+.error {
+	border: 3px solid red !important;
+}
+	
+.correct {
+	border: 3px solid #52D600 !important;
+}
+
+.message {
+	display: none;
+	color: red;
+}
