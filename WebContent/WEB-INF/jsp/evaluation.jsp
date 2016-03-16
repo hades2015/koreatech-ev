@@ -193,7 +193,7 @@
 	<jsp:include page="/WEB-INF/jsp/shared/header.jsp" flush="false" />
 	<div class="container">
 		<div id="evaluation_header">
-			<a href="/evaluation/create" class="btn btn-sm">강의평가 작성하기</a>
+			<a href="evaluation/create" class="btn btn-sm">강의평가 작성하기</a>
 		</div>
 		<div id="content-container">
 			<div id="side_nav">
