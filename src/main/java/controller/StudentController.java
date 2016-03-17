@@ -41,8 +41,9 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	public String signUpPost(@ModelAttribute Student student) { 
+	public String signUpPost(@ModelAttribute Student student) {
+		
 		studentService.createStudent(student);
-		return "redirect:login";
+		return "login";
 	}
 }
