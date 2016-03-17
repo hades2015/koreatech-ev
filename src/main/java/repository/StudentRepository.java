@@ -21,6 +21,7 @@ public class StudentRepository extends JdbcDaoSupport {
 	}
 	
 	public void createStudent(Student student) {
+		System.out.println(student.getUserEmail());
 		getJdbcTemplate().update(StudentSqls.CREATE_STUDENT, 
 					student.getUserId(), student.getPassword(), student.getUserName(),
 					student.getNickname(), student.getDepartment(), student.getGrade(), 

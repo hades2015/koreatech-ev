@@ -122,7 +122,19 @@ var signupValidation = (function() {
 				"department" : domCacheMap.$department.val(),
 				"grade" : domCacheMap.$grade.val(),
 				"studentNumber" : domCacheMap.$studentNumber.val(),
-				"email" : domCacheMap.$email.val(),
+				"userEmail" : domCacheMap.$userEmail.val(),
+			}, "json")
+			/*
+			$.post("/signup", {
+				"userId" : domCacheMap.$userId.val(),
+				"password" : domCacheMap.$password.val(),
+				"password-repeat" : domCacheMap.$passwordRepeat.val(),
+				"userName" : domCacheMap.$userName.val(),
+				"nickname" : domCacheMap.$nickname.val(),
+				"department" : domCacheMap.$department.val(),
+				"grade" : domCacheMap.$grade.val(),
+				"studentNumber" : domCacheMap.$studentNumber.val(),
+				"userEmail" : domCacheMap.$userEmail.val(),
 			}, "json").done(
 					function(responseJSON) {
 						if (responseJSON.status === true) {
@@ -140,6 +152,7 @@ var signupValidation = (function() {
 							domCacheMap.$message.show();
 						}
 					});
+			 */
 		} else {
 			domCacheMap.$container.effect("shake");
 		}
@@ -157,6 +170,7 @@ var signupValidation = (function() {
 			domCacheMap.$message.append("<li>Too short ID (min : 4)</li>")
 					.show();
 		} else {
+			/*
 			$.post("/student/check_id", {
 				"userId" : $(that).val()
 			}, "json").done(
@@ -177,6 +191,11 @@ var signupValidation = (function() {
 							statusMap.userId = false;
 						}
 					});
+			*/
+			$(that).removeClass("error correct");
+			_clearMessage();
+			$(that).addClass("correct");
+			statusMap.userId = true;
 		}
 	};
 	_clearMessage = function() {
@@ -230,8 +249,9 @@ var signupValidation = (function() {
 		domCacheMap.$userName = $container.find("input[name='userName']");
 		domCacheMap.$nickname = $container.find("input[name='nickname']");
 		domCacheMap.$department = $container.find("input[name='department']");
+		domCacheMap.$grade = $container.find("input[name='grade']");
 		domCacheMap.$studentNumber = $container.find("input[name='studentNumber']");
-		domCacheMap.$email = $container.find("input[name='userEmail']");
+		domCacheMap.$userEmail = $container.find("input[name='userEmail']");
 		domCacheMap.$message = $container.find(".message");
 		
 		// Event Handling
@@ -243,7 +263,7 @@ var signupValidation = (function() {
 		
 		domCacheMap.$userId.on("keyup", _onUserIdKeyUpHandler);
 		domCacheMap.$nickname.on("keyup", _onNickNameKeyUpHandler);
-		domCacheMap.$email.on("keyup", _onEmailKeyUpHandler);
+		domCacheMap.$userEmail.on("keyup", _onEmailKeyUpHandler);
 		domCacheMap.$password.on("keyup", _onPasswordKeyUpHandler);
 		domCacheMap.$passwordRepeat.on("keyup", _onPasswordRepeatKeyUpHandler);
 	};
