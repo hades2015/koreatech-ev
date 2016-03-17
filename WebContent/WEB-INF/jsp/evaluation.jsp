@@ -5,8 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KoreatechEV::Home</title>
+
 <link rel="stylesheet" type="css/text" href="/assets/css/normalize.css">
 <link rel="stylesheet" type="css/text" href="/assets/css/global.css">
+
+<script src="/assets/js/lib/jquery-1.12.0.min.js"></script>
+<script src="/assets/js/lib/bootstrap.js"></script>
+
 <style>
 * {
 	//outline: 1px dashed red;
@@ -222,6 +227,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="/assets/js/lib/jquery-1.12.0.min.js"></script>
 </body>
 </html>
