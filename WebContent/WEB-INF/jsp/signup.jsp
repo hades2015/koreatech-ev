@@ -13,7 +13,7 @@
 				<input type="text" id="user_id" name="userId" placeholder="ID"><br>
 				<input type="password" id="password" name="password" placeholder="Password"><br>
 				<input type="password" id="password" name="password-repeat" placeholder="Password Repeat"><br>
-				<input type="text" id="user_name" name="uesrName" placeholder="Name"><br>
+				<input type="text" id="user_name" name="userName" placeholder="Name"><br>
 				<input type="text" id="nickname" name="nickname" placeholder="Nickname"><br>
 				<input type="text" id="department" name="department" placeholder="department"><br>
 				<input type="radio" id="grade" name="grade" value="1">1학년
