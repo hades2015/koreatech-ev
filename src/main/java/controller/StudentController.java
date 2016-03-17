@@ -44,6 +44,6 @@ public class StudentController {
 	public String signUpPost(@ModelAttribute Student student) {
 		
 		studentService.createStudent(student);
-		return "login";
+		return "redirect:login";
 	}
 }
