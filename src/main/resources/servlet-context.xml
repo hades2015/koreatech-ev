@@ -18,6 +18,16 @@
 	</mvc:annotation-driven>
 	<mvc:resources mapping="/assets/**" location="/assets/" />
 	
+	<!-- Login 여부 확인을 위한 Interceptor추가. -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/*"/>
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/assets/**/*"/>
+			<bean id="loginInterceptor" class="intercepter.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- component scan시 controller만 설정 -->
 	<context:component-scan
 		base-package="controller, service, repository"
