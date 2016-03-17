@@ -120,8 +120,9 @@ var signupValidation = (function() {
 				"userEmail" : domCacheMap.$email.val(),
 			}, "json").done(
 					function(responseJSON, status) {
-						console.log(status);
+						
 						if (status === "success") {
+							alert("회원가입 성공.");
 							location.href = 'login';
 						} else {
 							//domCacheMap.$container.effect("shake");
