@@ -21,15 +21,10 @@ var signupValidation = (function() {
 		passwordRepeat : false,
 		//userName : false,
 		nickName : false,
-		//department : false,
-		//studentNumber : false,
+		// department : false,
+		// studentNumber : false,
 		email : false
-	}, 
-	init, 						_validate, 			_isEmptyInput, 
-	_isPasswordDifferent, 		_isPasswordWeak, 	_checkPasswordStrong, 
-	_onUserIdKeyUpHandler,	_clearMessage, 		_onSubmitSignUpForm, 
-	_onEmailKeyUpHandler, 		_checkId, 			_onPasswordKeyUpHandler, 
-	_onPasswordRepeatKeyUpHandler, 					_onNickNameKeyUpHandler;
+	}, init, _validate, _isEmptyInput, _isPasswordDifferent, _isPasswordWeak, _checkPasswordStrong, _onUserIdKeyUpHandler, _clearMessage, _onSubmitSignUpForm, _onEmailKeyUpHandler, _checkId, _onPasswordKeyUpHandler, _onPasswordRepeatKeyUpHandler, _onNickNameKeyUpHandler;
 
 	// event handlers
 	_onNickNameKeyUpHandler = function() {
@@ -38,9 +33,7 @@ var signupValidation = (function() {
 
 		if ($(this).val() === "") {
 			$(this).addClass("error");
-			domCacheMap.$message
-				.append("<li>Input name</li>")
-				.show();
+			domCacheMap.$message.append("<li>Input name</li>").show();
 			statusMap.nickname = false;
 		} else {
 			$(this).addClass("correct");
@@ -49,22 +42,25 @@ var signupValidation = (function() {
 	};
 	_onEmailKeyUpHandler = function() {
 		var regx = /.+@.+\..+/, result = regx.test($(this).val());
-		
+
 		$(this).removeClass("error correct");
 		_clearMessage();
-		
+
 		if (!result) {
 			$(this).addClass("error");
 			domCacheMap.$message.append("<li>Invalid Email</li>").show();
 			statusMap.email = false;
 		} else {
 			var domain = $(this).val().split("@")[1];
-			if("kut.ac.kr" === domain || "koreatech.ac.kr" === domain) {
+			if ("kut.ac.kr" === domain || "koreatech.ac.kr" === domain) {
 				$(this).addClass("correct");
 				statusMap.email = true;
 			} else {
 				$(this).addClass("error");
-				domCacheMap.$message.append("<li>Only Koreatech studnets. Use Koreatech Email</li>").show();
+				domCacheMap.$message
+						.append(
+								"<li>Only Koreatech studnets. Use Koreatech Email</li>")
+						.show();
 				statusMap.email = false;
 			}
 		}
@@ -98,20 +94,19 @@ var signupValidation = (function() {
 			statusMap.passwordRepeat = true;
 		}
 	};
-	
+
 	_onUserIdKeyUpHandler = function() {
 		if (statusMap.userIdKeyUpTemp !== null) {
 			clearTimeout(statusMap.userIdKeyUpTemp);
 		}
 
-		statusMap.userIdKeyUpTemp = 
-			setTimeout(_checkId.bind(this, this), 150);
+		statusMap.userIdKeyUpTemp = setTimeout(_checkId.bind(this, this), 150);
 	};
-	
+
 	_onSubmitSignUpForm = function(event) {
 		event.preventDefault();
 		var validationResult = _validate();
-
+		
 		if (validationResult) {
 			$.post("/signup", {
 				"userId" : domCacheMap.$userId.val(),
@@ -120,28 +115,30 @@ var signupValidation = (function() {
 				"userName" : domCacheMap.$userName.val(),
 				"nickname" : domCacheMap.$nickname.val(),
 				"department" : domCacheMap.$department.val(),
-				"grade" : domCacheMap.$grade.val(),
+				"grade" : $("input:radio[name='grade']:checked").val(),
 				"studentNumber" : domCacheMap.$studentNumber.val(),
-				"email" : domCacheMap.$email.val(),
+				"userEmail" : domCacheMap.$email.val(),
 			}, "json").done(
-					function(responseJSON) {
-						if (responseJSON.status === true) {
-							location.href = responseJSON.redirectUrl;
+					function(responseJSON, status) {
+						
+						if (status === "success") {
+							alert("회원가입 성공.");
+							location.href = 'login';
 						} else {
-							domCacheMap.$container.effect("shake");
+							//domCacheMap.$container.effect("shake");
 							for ( var key in responseJSON.messages) {
 								if (responseJSON.messages.hasOwnProperty(key)) {
-									domCacheMap.$message.append(
-											"<li>" + 
-											responseJSON.messages[key] + 
-											"</li>");
+									domCacheMap.$message.append("<li>"
+											+ responseJSON.messages[key]
+											+ "</li>");
 								}
 							}
 							domCacheMap.$message.show();
 						}
 					});
 		} else {
-			domCacheMap.$container.effect("shake");
+			//domCacheMap.$container.effect("shake");
+			alert("ERROR!!");
 		}
 	};
 
@@ -157,7 +154,7 @@ var signupValidation = (function() {
 			domCacheMap.$message.append("<li>Too short ID (min : 4)</li>")
 					.show();
 		} else {
-			$.post("/student/check_id", {
+			/*$.post("/student/check_id", {
 				"userId" : $(that).val()
 			}, "json").done(
 					function(responseJSON) {
@@ -176,7 +173,8 @@ var signupValidation = (function() {
 									.show();
 							statusMap.userId = false;
 						}
-					});
+					});*/
+			statusMap.userId = true;
 		}
 	};
 	_clearMessage = function() {
@@ -195,8 +193,7 @@ var signupValidation = (function() {
 		return isOk;
 	};
 	_isPasswordDifferent = function() {
-		var $password = domCacheMap.$password, 
-			$passwordRepeat = domCacheMap.$passwordRepeat;
+		var $password = domCacheMap.$password, $passwordRepeat = domCacheMap.$passwordRepeat;
 
 		return $password.val() !== $passwordRepeat.val();
 	};
@@ -213,12 +210,12 @@ var signupValidation = (function() {
 		}
 	};
 	_validate = function() {
-		var isOk = statusMap.userId && statusMap.nickName &&
-			statusMap.email && statusMap.password && statusMap.passwordRepeat;
+		var isOk = statusMap.userId && statusMap.nickName && statusMap.email
+				&& statusMap.password && statusMap.passwordRepeat;
 
 		return isOk;
 	};
-	
+
 	// public methods
 	init = function($container) {
 		// init Module
@@ -233,14 +230,14 @@ var signupValidation = (function() {
 		domCacheMap.$studentNumber = $container.find("input[name='studentNumber']");
 		domCacheMap.$email = $container.find("input[name='userEmail']");
 		domCacheMap.$message = $container.find(".message");
-		
+
 		// Event Handling
 		domCacheMap.$form.on("click", "input", function() {
 			$(this).removeClass("error");
 		});
 
 		domCacheMap.$form.on("submit", _onSubmitSignUpForm);
-		
+
 		domCacheMap.$userId.on("keyup", _onUserIdKeyUpHandler);
 		domCacheMap.$nickname.on("keyup", _onNickNameKeyUpHandler);
 		domCacheMap.$email.on("keyup", _onEmailKeyUpHandler);
