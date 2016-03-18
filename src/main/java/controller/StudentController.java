@@ -1,6 +1,5 @@
 package controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Student;
 import service.StudentService;
@@ -18,17 +21,20 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Autowired
+	ObjectMapper jacksonObjectMapper;
+	
 	@RequestMapping("/")
 	public String root() {
 		return "redirect:login";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginView() {
 		return "login";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginPost(@RequestParam String userId, @RequestParam String password, HttpSession sessions) {
 		
 		Student student = studentService.readStudentByUserId(userId);
@@ -52,16 +58,14 @@ public class StudentController {
 		}	
 	}
 	
-	@RequestMapping(value = "signup", method = RequestMethod.GET)
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signUpView() {
 		return "signup";
 	}
 	
-	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	public String signUpPost(@ModelAttribute Student student) {
-		
-		studentService.createStudent(student);
-		return "redirect:login";
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public @ResponseBody JsonNode signUpPost(@ModelAttribute Student student) {
+		return studentService.createStudent(student);
 	}
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session){
