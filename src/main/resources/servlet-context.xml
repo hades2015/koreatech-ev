@@ -43,6 +43,11 @@
 			expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
+	<!--JSON 객체 반환을 위해서 추가한 Bean -->
+  	<bean id="jacksonMessageConverter"
+  		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+  	<bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+	
 	<!-- jsp 파일경로 설정을 위한 prefix 및 suffix 설정 -->
 	<!-- prefix + viewName + suffix -->
 	<!-- 참조 : org.springframework.web.servlet.view.UrlBasedViewResolver.buildView(String) -->
