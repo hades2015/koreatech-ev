@@ -30,11 +30,10 @@ var signupValidation = (function() {
 	_onNickNameKeyUpHandler = function() {
 		$(this).removeClass("error correct");
 		_clearMessage();
-
 		if ($(this).val() === "") {
 			$(this).addClass("error");
 			domCacheMap.$message.append("<li>Input name</li>").show();
-			statusMap.nickname = false;
+			statusMap.nickName = false;
 		} else {
 			$(this).addClass("correct");
 			statusMap.nickName = true;
@@ -106,7 +105,7 @@ var signupValidation = (function() {
 	_onSubmitSignUpForm = function(event) {
 		event.preventDefault();
 		var validationResult = _validate();
-		
+
 		if (validationResult) {
 			$.post("/signup", {
 				"userId" : domCacheMap.$userId.val(),
@@ -117,13 +116,12 @@ var signupValidation = (function() {
 				"department" : domCacheMap.$department.val(),
 				"grade" : $("input:radio[name='grade']:checked").val(),
 				"studentNumber" : domCacheMap.$studentNumber.val(),
-				"userEmail" : domCacheMap.$email.val(),
+				"userEmail" : domCacheMap.$userEmail.val(),
 			}, "json").done(
-					function(responseJSON, status) {
-						
-						if (status === "success") {
-							alert("회원가입 성공.");
-							location.href = 'login';
+					function(responseJSON) {
+
+						if (responseJSON.status === true) {
+							location.href = responseJSON.redirectUrl;
 						} else {
 							//domCacheMap.$container.effect("shake");
 							for ( var key in responseJSON.messages) {
@@ -228,7 +226,7 @@ var signupValidation = (function() {
 		domCacheMap.$nickname = $container.find("input[name='nickname']");
 		domCacheMap.$department = $container.find("input[name='department']");
 		domCacheMap.$studentNumber = $container.find("input[name='studentNumber']");
-		domCacheMap.$email = $container.find("input[name='userEmail']");
+		domCacheMap.$userEmail = $container.find("input[name='userEmail']");
 		domCacheMap.$message = $container.find(".message");
 
 		// Event Handling
@@ -240,7 +238,7 @@ var signupValidation = (function() {
 
 		domCacheMap.$userId.on("keyup", _onUserIdKeyUpHandler);
 		domCacheMap.$nickname.on("keyup", _onNickNameKeyUpHandler);
-		domCacheMap.$email.on("keyup", _onEmailKeyUpHandler);
+		domCacheMap.$userEmail.on("keyup", _onEmailKeyUpHandler);
 		domCacheMap.$password.on("keyup", _onPasswordKeyUpHandler);
 		domCacheMap.$passwordRepeat.on("keyup", _onPasswordRepeatKeyUpHandler);
 	};
