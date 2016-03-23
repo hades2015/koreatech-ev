@@ -52,6 +52,24 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
 		</dependency>
+		
+		<!-- json 객체 반환을 위해서 추가 -->
+ 		<dependency>
+ 			<groupId>com.fasterxml.jackson.core</groupId>
+ 			<artifactId>jackson-core</artifactId>
+ 			<version>${jackson-version}</version>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>com.fasterxml.jackson.core</groupId>
+ 			<artifactId>jackson-databind</artifactId>
+ 			<version>${jackson-version}</version>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>com.fasterxml.jackson.core</groupId>
+ 			<artifactId>jackson-annotations</artifactId>
+ 			<version>${jackson-version}</version>
+ 		</dependency>
+		
 	</dependencies>
 	
 	<build>
