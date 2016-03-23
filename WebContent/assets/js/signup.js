@@ -119,8 +119,7 @@ var signupValidation = (function() {
 				"userEmail" : domCacheMap.$userEmail.val(),
 			}, "json").done(
 					function(responseJSON) {
-
-						if (responseJSON.status === true) {
+						if (responseJSON.statusCode === 200) { // OK
 							location.href = responseJSON.redirectUrl;
 						} else {
 							//domCacheMap.$container.effect("shake");
