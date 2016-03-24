@@ -75,10 +75,11 @@ html {
 											name="password" placeholder="PASSWORD">
 									</div>
 								</div>
+								<div class="row">
+									<ul class="message"></ul>
+								</div>
 							</div>
 							
-							<ul class="message"></ul>	
-	
 							<!-- LOGIN BUTTON -->
 							<div class="col-md-5 text-left">
 								<input id="loginBtn" class="btn btn-default btn-lg" type="submit"
