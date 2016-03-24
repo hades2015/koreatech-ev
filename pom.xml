@@ -14,6 +14,7 @@
 		<spring-version>4.1.4.RELEASE</spring-version>
 		<spring-mobile>1.1.5.RELEASE</spring-mobile>
 		<jackson-version>2.7.0</jackson-version>
+		<spring-security-version>4.0.4.RELEASE</spring-security-version>
 	</properties>
 
 	<dependencies>
@@ -51,6 +52,18 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
+		</dependency>
+		
+		<!-- spring security dependency -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring-security-version}</version>
 		</dependency>
 		
 		<!-- json 객체 반환을 위해서 추가 -->
