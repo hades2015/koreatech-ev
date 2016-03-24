@@ -32,7 +32,7 @@ public class StudentRepository extends JdbcDaoSupport {
 					(rs, rowNum) -> new Student(
 					rs.getString("user_id"),
 					rs.getString("password"),
-					rs.getString("name"),
+					rs.getString("userName"),
 					rs.getString("nickname"),
 					rs.getString("department"),
 					rs.getInt("grade"),
