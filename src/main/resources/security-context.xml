@@ -1,61 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:security="http://www.springframework.org/schema/security"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
-		
-		<security:http pattern="/assets/**" security="none"/>
-		
-		<security:http auto-config="true">
-			<!-- csrf token disable. -->
-			<security:csrf disabled="true"/>
-			
-			<security:intercept-url pattern="/" access="hasRole('ROLE_ANONYMOUS')"/>
-			<security:intercept-url pattern="/login" access="hasRole('ROLE_ANONYMOUS')"/>
-			<security:intercept-url pattern="/signup" access="hasRole('ROLE_ANONYMOUS')"/>
-			
-			<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
-			<security:form-login
-				login-page="/login"
-				username-parameter="userId"
-				password-parameter="password"
-				default-target-url="/evaluation"
-				always-use-default-target="true"
-				
-			/>
-			<security:logout 
-				logout-success-url="/login"
-				logout-url="/logout"
-				invalidate-session="true"
-			/>
-		</security:http>
-		
-		<!--
-		<security:authentication-manager>
-			<security:authentication-provider>
-				<security:user-service>
-					<security:user name="coalfm123" password="123411" authorities="ROLE_USER"/>
-				</security:user-service>
-			</security:authentication-provider>		
-		</security:authentication-manager>
-		-->
-		
-		<bean id="securityStudentService" class="repository.SecurityRepository">
-			<property name="dataSource" ref="defaultDataSource"/>
-			<property name="usersByUsernameQuery">
-				<value>
-					SELECT st.*, str.role 
-					FROM student st, student_role str 
-			 		WHERE st.user_id = str.user_id and st.user_id = ?
-				</value>
-			</property>
-		</bean>
-		
-		<security:authentication-manager>
-			<security:authentication-provider user-service-ref="securityStudentService"/>
-		</security:authentication-manager>
-				
+
+	<security:http pattern="/assets/**" security="none" />
+
+	<security:http auto-config="true">
+		<!-- csrf token disable. -->
+		<security:csrf disabled="true" />
+
+		<security:intercept-url pattern="/"
+			access="hasRole('ROLE_ANONYMOUS')" />
+		<security:intercept-url pattern="/login"
+			access="hasRole('ROLE_ANONYMOUS')" />
+		<security:intercept-url pattern="/signup"
+			access="hasRole('ROLE_ANONYMOUS')" />
+
+		<security:intercept-url pattern="/**"
+			access="hasRole('ROLE_USER')" />
+		<security:form-login login-page="/login"
+			login-processing-url="/login" 
+			username-parameter="userId"
+			password-parameter="password" 
+			default-target-url="/evaluation"
+			always-use-default-target="true" />
+
+		<security:logout logout-success-url="/login"
+			logout-url="/logout" invalidate-session="true" />
+
+		<security:session-management>
+			<security:concurrency-control
+				max-sessions="1" />
+		</security:session-management>
+	</security:http>
+
+	<!-- <security:authentication-manager> <security:authentication-provider> 
+		<security:user-service> <security:user name="coalfm123" password="123411" 
+		authorities="ROLE_USER"/> </security:user-service> </security:authentication-provider> 
+		</security:authentication-manager> -->
+
+	<bean id="securityStudentService" class="security.SecurityRepository">
+		<property name="dataSource" ref="defaultDataSource" />
+		<property name="usersByUsernameQuery">
+			<value>
+				SELECT st.*, str.role
+				FROM student st, student_role str
+				WHERE
+				st.user_id = str.user_id and st.user_id = ?
+			</value>
+		</property>
+	</bean>
+
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="securityStudentService" />
+	</security:authentication-manager>
+
 </beans>
