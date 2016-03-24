@@ -35,9 +35,9 @@
 			</div>
 			<div id="student_info" class="col-md-4 text-right">
 				<div class="row">
-					<span>이름 : ${userName} </span>
-					<span>학년 : ${grade} </span>
-					<span>학부 : ${department} </span>
+					<span>이름 : ${sessionScope.userInfo.userName} </span>
+					<span>학년 : ${sessionScope.userInfo.grade} </span>
+					<span>학부 : ${sessionScope.userInfo.department} </span>
 				</div>
 				<div class="row">
 					<a href="/user/update">정보수정</a> <a href="/logout">Logout</a>
