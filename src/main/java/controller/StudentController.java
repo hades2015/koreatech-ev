@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import model.Student;
 import service.StudentService;
+import utils.StatusCode;
 
 @Controller
 public class StudentController {
@@ -35,12 +37,13 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPost(@RequestParam String userId, @RequestParam String password, HttpSession sessions) {
+	public @ResponseBody JsonNode loginPost(@RequestParam String userId, 
+					@RequestParam String password, HttpSession sessions) {
 		
+		ObjectNode resultMap = jacksonObjectMapper.createObjectNode();
 		Student student = studentService.readStudentByUserId(userId);
 		
 		if(password.equals(student.getPassword())) {
-			
 			sessions.setAttribute("userId", student.getUserId());
 			sessions.setAttribute("userName", student.getUserName());
 			sessions.setAttribute("nickname", student.getNickname());
@@ -49,13 +52,11 @@ public class StudentController {
 			sessions.setAttribute("studentNumber", student.getStudentNumber());
 			sessions.setAttribute("userEmail", student.getUserEmail());
 			
-			return "redirect:evaluation";
-		
+			resultMap.put("statusCode", StatusCode.OK);
 		} else {
-		
-			return "redirect:login_fail";
-		
+			resultMap.put("statusCode", StatusCode.ERROR);
 		}	
+		return resultMap;
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)

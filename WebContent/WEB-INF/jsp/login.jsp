@@ -52,37 +52,41 @@ html {
 				</div>
 			</div>
 			<div class="row text-center">
-				<form method="post" id="login_form" action="login">
-					<div class="row">
-						<div class="col-md-7">
-							<!-- ID InputBox -->
-							<div class="row">
-								<div class="col-md-7"></div>
-
-								<div class="input-group col-md-5 text-center">
-									<input class="form-control" type="text" id="userId"
-										name="userId" placeholder="ID">
+				<div id="login_container">
+					<form method="post" id="login_form" action="login">
+						<div class="row">
+							<div class="col-md-7">
+								<!-- ID InputBox -->
+								<div class="row">
+									<div class="col-md-7"></div>
+	
+									<div class="input-group col-md-5 text-center">
+										<input class="form-control" type="text" id="userId"
+											name="userId" placeholder="ID">
+									</div>
+								</div>
+	
+								<!-- PASSWORD InputBox -->
+								<div class="row">
+									<div class="col-md-7"></div>
+	
+									<div class="input-group col-md-5">
+										<input class="form-control" type="password" id="password"
+											name="password" placeholder="PASSWORD">
+									</div>
 								</div>
 							</div>
-
-							<!-- PASSWORD InputBox -->
-							<div class="row">
-								<div class="col-md-7"></div>
-
-								<div class="input-group col-md-5">
-									<input class="form-control" type="password" id="password"
-										name="password" placeholder="PASSWORD">
-								</div>
+							
+							<ul class="message"></ul>	
+	
+							<!-- LOGIN BUTTON -->
+							<div class="col-md-5 text-left">
+								<input id="loginBtn" class="btn btn-default btn-lg" type="submit"
+									value="LOGIN">
 							</div>
 						</div>
-
-						<!-- LOGIN BUTTON -->
-						<div class="col-md-5 text-left">
-							<input id="loginBtn" class="btn btn-default btn-lg" type="submit"
-								value="LOGIN">
-						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 				<!-- 
 				<a href="signup">
 					<button class="btn btn-default btn-sm">Sign Up</button>
